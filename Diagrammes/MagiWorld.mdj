@@ -1863,7 +1863,7 @@
 											"top": 252,
 											"width": 278,
 											"height": 13,
-											"text": "+nbOfClass: int",
+											"text": "-nbOfClass: int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2548,6 +2548,7 @@
 								"$ref": "AAAAAAFl+xjBuw2TP34="
 							},
 							"name": "nbOfClass",
+							"visibility": "private",
 							"type": "int"
 						}
 					],
