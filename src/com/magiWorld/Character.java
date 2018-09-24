@@ -21,6 +21,15 @@ public abstract class Character {
      */
     public abstract String SpecialAttack();
 
+    /**
+     *Description of the Character.
+     */
+    public abstract String toString();
+
+    /**
+     *getters and setters .
+     */
+
     public int getLevel() {
         return level;
     }
