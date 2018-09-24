@@ -1,6 +1,6 @@
 package com.magiWorld;
 
-public class Character {
+public abstract class Character {
     private int level,life, strength, agility, intelligence;
 
 
