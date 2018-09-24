@@ -12,6 +12,14 @@ public abstract class Character {
         this.intelligence = intelligence;
     }
 
+    /**
+     * Run a basic attack
+     */
+    public abstract String basicAttack();
+    /**
+     * Run a special attack.
+     */
+    public abstract String SpecialAttack();
 
     public int getLevel() {
         return level;
