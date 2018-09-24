@@ -5,10 +5,16 @@ public class Warrior extends Character {
         super(level, life, strength, agility, intelligence);
     }
 
+    /**
+     * Run process for a basic attack.
+     */
     @Override
     public String basicAttack() {
         return null;
     }
+    /**
+     * Run process for a special attack.
+     */
 
     @Override
     public String SpecialAttack() {

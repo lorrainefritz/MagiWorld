@@ -13,11 +13,11 @@ public abstract class Character {
     }
 
     /**
-     * Run a basic attack
+     * Run process for a basic attack.
      */
     public abstract String basicAttack();
     /**
-     * Run a special attack.
+     * Run process for a special attack.
      */
     public abstract String SpecialAttack();
 
