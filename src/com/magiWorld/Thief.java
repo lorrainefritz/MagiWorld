@@ -20,8 +20,6 @@ public class Thief extends Character {
     public String SpecialAttack() {
         return null;
     }
-    /**
-     *Description of the Thief.
-     */
+
 
 }

@@ -20,8 +20,6 @@ public class Wizard extends Character {
     public String SpecialAttack() {
         return null;
     }
-    /**
-     *Description of the Wizard.
-     */
+
 
 }
