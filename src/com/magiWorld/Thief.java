@@ -1,8 +1,8 @@
 package com.magiWorld;
 
 public class Thief extends Character {
-    public Thief(int level, int life, int strength, int agility, int intelligence) {
-        super(level, life, strength, agility, intelligence);
+    public Thief(int level, int strength, int agility, int intelligence) {
+        super(level, strength, agility, intelligence);
     }
     /**
      * Run process for a basic attack.
@@ -21,8 +21,5 @@ public class Thief extends Character {
     /**
      *Description of the Thief.
      */
-    @Override
-    public String toString() {
-        return null;
-    }
+
 }

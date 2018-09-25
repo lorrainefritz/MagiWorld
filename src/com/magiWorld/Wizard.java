@@ -1,8 +1,8 @@
 package com.magiWorld;
 
 public class Wizard extends Character {
-    public Wizard(int level, int life, int strength, int agility, int intelligence) {
-        super(level, life, strength, agility, intelligence);
+    public Wizard(int level, int strength, int agility, int intelligence) {
+        super(level,  strength, agility, intelligence);
     }
     /**
      * Run process for a basic attack.
@@ -21,8 +21,5 @@ public class Wizard extends Character {
     /**
      *Description of the Wizard.
      */
-    @Override
-    public String toString() {
-        return null;
-    }
+
 }

@@ -1,8 +1,9 @@
 package com.magiWorld;
 
 public class Warrior extends Character {
-    public Warrior(int level, int life, int strength, int agility, int intelligence) {
-        super(level, life, strength, agility, intelligence);
+    public Warrior(int level, int strength, int agility, int intelligence) {
+        super(level, strength, agility, intelligence);
+
     }
 
     /**
@@ -23,8 +24,5 @@ public class Warrior extends Character {
     /**
      *Description of the Warrior.
      */
-    @Override
-    public String toString() {
-        return null;
-    }
+
 }
