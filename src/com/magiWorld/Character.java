@@ -1,12 +1,11 @@
 package com.magiWorld;
 
 public abstract class Character {
-    private int level, strength, agility, intelligence, numberOfPlayers;
-    private int life = 5*level; // moche mais temporaire : penser à le mettre ailleurs
-    private String descriptionCharacter;
-    private String descriptionCharacterTot = descriptionCharacter+ " Joueur "+ numberOfPlayers+ "niveau, "+ level+ "je possède "
-            + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence";
 
+    private int level, strength, agility, intelligence;
+    private int life;
+    private String descriptionCharacter;
+    private int numberOfPlayers;
 
 
     public Character(int level, int strength, int agility, int intelligence) {
@@ -14,8 +13,10 @@ public abstract class Character {
         this.strength = strength;
         this.agility = agility;
         this.intelligence = intelligence;
-        numberOfPlayers++;
+        life = 5*level;// moche mais temporaire : permet de mettre la vie à fois 5
+        ++numberOfPlayers; // ne fonctionne pas -_- de toute façon un compteur général serait plus propre
     }
+
 
     /**
      * Run process for a basic attack.
@@ -30,7 +31,8 @@ public abstract class Character {
      *Description of the Character.
      */
     public String toString(){
-        return descriptionCharacterTot ;
+        return   descriptionCharacter+ " Joueur "+ numberOfPlayers+ ", je suis niveau "+ level+ ", je possède "
+                + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence";
     }
 
     /**

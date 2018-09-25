@@ -1,9 +1,11 @@
 package com.magiWorld;
 
 public class Warrior extends Character {
+    private String warriorDescription ="Woarg je suis le guerrier";
+
     public Warrior(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
-
+        setDescriptionCharacter(warriorDescription);
     }
 
     /**
