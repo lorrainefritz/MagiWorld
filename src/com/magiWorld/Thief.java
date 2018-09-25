@@ -1,7 +1,7 @@
 package com.magiWorld;
 
 public class Thief extends Character {
-    private String thiefDescription ="(whispering) je suis le roublard";
+    private String thiefDescription ="(whispering) je suis le roublard : moins fort, penses à ma discretion bon sang!";
     public Thief(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         setDescriptionCharacter(thiefDescription);

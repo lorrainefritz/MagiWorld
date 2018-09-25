@@ -12,6 +12,7 @@ public class Main {
         System.out.println(warrior2.toString());
         System.out.println(thief.toString());
         System.out.println(wizard.toString());
-
+        System.out.println("Hey! Mais en fait cette classe de perso n'a pas encore été programmée!\n" +
+                "Merci de choisir (pour le moment) entre 1 2 ou 3 svp ;)");
     }
 }
