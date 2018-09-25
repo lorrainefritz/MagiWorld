@@ -1,7 +1,8 @@
 package com.magiWorld;
 
 public abstract class Character {
-    private int level,life, strength, agility, intelligence;
+    private int level,life, strength, agility, intelligence, numberOfPlayers;
+    private String descriptionCharacter;
 
 
     public Character(int level, int life, int strength, int agility, int intelligence) {
@@ -10,6 +11,7 @@ public abstract class Character {
         this.strength = strength;
         this.agility = agility;
         this.intelligence = intelligence;
+        numberOfPlayers++;
     }
 
     /**
@@ -24,7 +26,10 @@ public abstract class Character {
     /**
      *Description of the Character.
      */
-    public abstract String toString();
+    public String toString(){
+        return descriptionCharacter+ " Joueur "+ numberOfPlayers+ "niveau, "+ level+ "je possède "
+            + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence";
+    }
 
     /**
      *getters and setters .
@@ -68,5 +73,13 @@ public abstract class Character {
 
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
+    }
+
+    public String getDescriptionCharacter() {
+        return descriptionCharacter;
+    }
+
+    public void setDescriptionCharacter(String descriptionCharacter) {
+        this.descriptionCharacter = descriptionCharacter;
     }
 }

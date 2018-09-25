@@ -20,4 +20,11 @@ public class Warrior extends Character {
     public String SpecialAttack() {
         return null;
     }
+    /**
+     *Description of the Warrior.
+     */
+    @Override
+    public String toString() {
+        return null;
+    }
 }

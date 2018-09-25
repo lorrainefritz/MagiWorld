@@ -18,4 +18,11 @@ public class Thief extends Character {
     public String SpecialAttack() {
         return null;
     }
+    /**
+     *Description of the Thief.
+     */
+    @Override
+    public String toString() {
+        return null;
+    }
 }
