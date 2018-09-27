@@ -19,7 +19,7 @@ class WarriorTest {
     @Test
     public void Given_WarriorDescprition_When_chooseClass_Then_DisplayWarriorSentence() { // magnifique test qui ne marche pas DUTOUT
        Warrior warrior1 = new Warrior(1, 1, 0, 0);
-       warrior1.toString();
+       System.out.println(warrior1);
         assertEquals("Woarg je suis le guerrier Joueur 1, je suis niveau 1, je possède 0 de vitalité, 1 de force, 0 d'agilité et 0 d'intelligence +  \n",
                 outContent.toString().replace("\r\n", "\n"));
     }
