@@ -3,7 +3,7 @@ package com.magiWorld;
 public abstract class Character {
 
     private int level, strength, agility, intelligence;
-    private int life;
+    private double life;
     private String descriptionCharacter;
     private int numberOfPlayers;
 
@@ -47,11 +47,11 @@ public abstract class Character {
         this.level = level;
     }
 
-    public int getLife() {
+    public double getLife() {
         return life;
     }
 
-    public void setLife(int life) {
+    public void setLife(double life) {
         this.life = life;
     }
 
