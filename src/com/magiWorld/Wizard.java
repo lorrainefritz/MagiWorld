@@ -17,7 +17,7 @@ public class Wizard extends Character {
      * Run process for a special attack.
      */
     @Override
-    public String SpecialAttack() {
+    public String specialAttack() {
         return null;
     }
 

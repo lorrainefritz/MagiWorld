@@ -25,7 +25,7 @@ public abstract class Character {
     /**
      * Run process for a special attack.
      */
-    public abstract String SpecialAttack();
+    public abstract String specialAttack();
 
     /**
      *Description of the Character.
@@ -85,5 +85,13 @@ public abstract class Character {
 
     public void setDescriptionCharacter(String descriptionCharacter) {
         this.descriptionCharacter = descriptionCharacter;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
     }
 }
