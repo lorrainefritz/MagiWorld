@@ -13,30 +13,30 @@ public abstract class Character {
         this.strength = strength;
         this.agility = agility;
         this.intelligence = intelligence;
-        life = 5*level;// moche mais temporaire : permet de mettre la vie à fois 5
-        ++numberOfPlayers; // ne fonctionne pas -_- de toute façon un compteur général serait plus propre
+        life = 5*level;
+
     }
 
 
     /**
      * Run process for a basic attack.
      */
-    public abstract String basicAttack();
+    public abstract int basicAttack();
     /**
      * Run process for a special attack.
      */
-    public abstract String specialAttack();
+    public abstract int specialAttack();
 
     /**
      *Description of the Character.
      */
     public String toString(){
-        return   descriptionCharacter+ " Joueur "+ numberOfPlayers+ ", je suis niveau "+ level+ ", je possède "
+        return   descriptionCharacter+ " Je suis le Joueur"+ numberOfPlayers+ ", je suis niveau "+ level+ ", je possède "
                 + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence";
     }
 
     /**
-     *getters and setters .
+     *getters and setters.
      */
 
     public int getLevel() {

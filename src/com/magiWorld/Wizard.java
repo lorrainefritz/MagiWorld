@@ -9,16 +9,17 @@ public class Wizard extends Character {
     /**
      * Run process for a basic attack.
      */
+
     @Override
-    public String basicAttack() {
-        return null;
+    public int basicAttack() {
+        return 5;
     }
     /**
      * Run process for a special attack.
      */
-    @Override
-    public String specialAttack() {
-        return null;
+   @Override
+    public int specialAttack() {
+        return 5;
     }
 
 
