@@ -31,8 +31,8 @@ public abstract class Character {
      *Description of the Character.
      */
     public String toString(){
-        return   descriptionCharacter+ " Je suis le Joueur"+ numberOfPlayers+ ", je suis niveau "+ level+ ", je possède "
-                + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence";
+        return   descriptionCharacter+ " Je suis le Joueur "+ numberOfPlayers+ ", je suis niveau "+ level+ ", je possède "
+                + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence.";
     }
 
     /**

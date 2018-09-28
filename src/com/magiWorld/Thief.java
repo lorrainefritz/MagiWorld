@@ -12,7 +12,7 @@ public class Thief extends Character {
 
     @Override
     public int basicAttack() {
-        return 5;
+        return getAgility();
     }
     /**
      * Run process for a special attack.
@@ -20,7 +20,9 @@ public class Thief extends Character {
 
     @Override
     public int specialAttack() {
-        return 5;
+        int bonus =(int)Math.round(((double)getLevel()/2));
+        setAgility(getAgility()+bonus);
+        return 0; // choix temporaire
     }
 
 

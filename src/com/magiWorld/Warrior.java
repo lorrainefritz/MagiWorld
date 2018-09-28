@@ -25,7 +25,7 @@ public class Warrior extends Character {
     public int specialAttack() {
 
        int damages = 2*getStrength();
-       int malus = (int)Math.round(getLife()-((double)getStrength()/2));
+       int malus = (int)Math.round(((double)getStrength()/2)); // version antérieure retranchait en fait une première fois de getLife, puis on recommançait dans le setLife
        setLife(getLife()-malus);
         return damages;
     }
