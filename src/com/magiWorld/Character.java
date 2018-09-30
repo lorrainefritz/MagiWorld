@@ -6,6 +6,7 @@ public abstract class Character {
     private double life;
     private String descriptionCharacter;
     private int numberOfPlayers;
+    private int characteristicsMax;
 
 
     public Character(int level, int strength, int agility, int intelligence) {
@@ -14,7 +15,7 @@ public abstract class Character {
         this.agility = agility;
         this.intelligence = intelligence;
         life = 5*level;
-
+        characteristicsMax = level;
     }
 
 
@@ -33,6 +34,14 @@ public abstract class Character {
     public String toString(){
         return   descriptionCharacter+ " Je suis le Joueur "+ numberOfPlayers+ ", je suis niveau "+ level+ ", je possède "
                 + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence.";
+    }
+    /**
+     * Check caracteristics sum.
+     */
+    public void characteristicsChecker(){ // pour l'instant est en void
+        int charactSum = getStrength()+getAgility()+getIntelligence();
+        if (charactSum>characteristicsMax||charactSum<0) throw new CharacterException("le nombre de points à attribuer au caractéristiques de ton perso doit être égal à ton niveau ^^.\n " +
+                "Ton niveau est de " +getLevel()+" tu as donc " +getLevel() +" à attribuer");
     }
 
     /**
@@ -93,5 +102,13 @@ public abstract class Character {
 
     public void setNumberOfPlayers(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
+    }
+
+    public int getCharacteristicsMax() {
+        return characteristicsMax;
+    }
+
+    public void setCharacteristicsMax(int characteristicsMax) {
+        this.characteristicsMax = characteristicsMax;
     }
 }

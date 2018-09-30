@@ -1,5 +1,7 @@
 package com.magiWorld;
 
+import java.util.stream.Collector;
+
 public class Main {
     public static void main(String[] args) {
        Character warrior1 = new Warrior(1, 1, 0, 0);
@@ -25,10 +27,11 @@ public class Main {
         wizard.specialAttack();
         System.out.println(wizard.getLife());
 */
+        ;
 
-
-
-
+        warrior1.characteristicsChecker();
+        wizard.characteristicsChecker();
+        thief.characteristicsChecker();
 
     }
 }
