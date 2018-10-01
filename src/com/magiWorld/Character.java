@@ -9,7 +9,8 @@ public abstract class Character {
     private int characteristicsMax;
 
 
-    public Character(int level, int strength, int agility, int intelligence) {
+    public Character(int level, int strength, int agility, int intelligence) throws CharacterException{ //on contrôle dès la construction
+        characteristicsChecker();
         this.level = level;
         this.strength = strength;
         this.agility = agility;
@@ -17,6 +18,7 @@ public abstract class Character {
         life = 5*level;
         characteristicsMax = level;
     }
+
 
 
     /**
@@ -36,12 +38,11 @@ public abstract class Character {
                 + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence.";
     }
     /**
-     * Check caracteristics sum.
+     * Check characteristics sum.
      */
     public void characteristicsChecker(){ // pour l'instant est en void
         int charactSum = getStrength()+getAgility()+getIntelligence();
-        if (charactSum>characteristicsMax||charactSum<0) throw new CharacterException("le nombre de points à attribuer au caractéristiques de ton perso doit être égal à ton niveau ^^.\n " +
-                "Ton niveau est de " +getLevel()+" tu as donc " +getLevel() +" à attribuer");
+        if (charactSum>characteristicsMax||charactSum<0) throw new CharacterException();
     }
 
     /**
