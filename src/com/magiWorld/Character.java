@@ -9,7 +9,7 @@ public abstract class Character {
     private int characteristicsMax;
 
 
-    public Character(int level, int strength, int agility, int intelligence) throws CharacterException{ //on contrôle dès la construction
+    public Character(int level, int strength, int agility, int intelligence) { //on contrôle dès la construction
         characteristicsChecker();
         this.level = level;
         this.strength = strength;
@@ -40,9 +40,12 @@ public abstract class Character {
     /**
      * Check characteristics sum.
      */
-    public void characteristicsChecker(){ // pour l'instant est en void
+    public boolean characteristicsChecker(){ // pour l'instant est en void
         int charactSum = getStrength()+getAgility()+getIntelligence();
-        if (charactSum>characteristicsMax||charactSum<0) throw new CharacterException();
+        if (charactSum>characteristicsMax||charactSum<0) { // enlever l'exception
+            return false;
+        } return true;
+
     }
 
     /**

@@ -1,11 +1,14 @@
 package com.magiWorld;
 
 public class Wizard extends Character {
-    private String wizardDescription = "Abracadabra je suis le sorcier : bon sérieusement qu'est ce qu'on brûle aujourd'hui?";
+    public Wizard(){
+        super(0, 0, 0, 0);
+        setDescriptionCharacter("Abracadabra je suis le sorcier : bon sérieusement qu'est ce qu'on brûle aujourd'hui?");
+    }
 
     public Wizard(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
-        setDescriptionCharacter(wizardDescription);
+        setDescriptionCharacter("Abracadabra je suis le sorcier : bon sérieusement qu'est ce qu'on brûle aujourd'hui?");
     }
 
     /**

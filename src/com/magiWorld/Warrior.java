@@ -2,6 +2,10 @@ package com.magiWorld;
 
 public class Warrior extends Character {
 
+    public Warrior(){
+        super(0, 0, 0, 0);
+        setDescriptionCharacter("Woarg moi grand guerrier élu de Crom : où moi taper?\n");
+    }
 
     public Warrior(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
