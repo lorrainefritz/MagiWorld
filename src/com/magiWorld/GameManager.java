@@ -8,12 +8,12 @@ import java.util.Scanner;
 public class GameManager {
     private Character[] tabPlayers;
     private Character player1, player2;
-    private Scanner scanner;
+
 
     public GameManager() {
-        scanner = new Scanner(System.in);
-        player1.setNumberOfPlayers(1);//???????????????????????????????????????????????????????????????????????????????????????????????????
-        player2.setNumberOfPlayers(2);//???????????????????????????????????????????????????????????????????????????????????????????????????
+        initializePlayers(player1);
+        initializePlayers(player2);
+
     }
 
     /**
@@ -59,62 +59,68 @@ public class GameManager {
     /**
      * Initialize players
      *
-     * @param tabPlayers
+     * @param player
      */
-    //???????????????????????????????????????????????????????????????????????????????????????????????????
-    // !!!!!!!!!! attention à partir d'ici j'ai mis les joueurs dans un tableau => donc tous les appels de méthodes sont sensés passer par ce tableau
-    // MAIS pour le moment ne fonctionne pas
-    public void initializePlayers(Character[] tabPlayers) {// en paramètres on utilise player pour pouvoir gérer les players => astuce
-        tabPlayers[0] = player1;
-        tabPlayers[1] = player2;
-        for (int i = 0; i < tabPlayers.length; i++) {
+
+    public void initializePlayers(Character player) {// en paramètres on utilise player pour pouvoir gérer les players => astuce
+        do {
             try {
-                chooseClass(scanner.nextInt());
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Veuillez saisir son niveau");
+                player.setLevel(scanner.nextInt());
+                player.setLife(player.getLevel() * 5);
+                System.out.println("Veuillez saisir sa force");
+                player.setStrength(scanner.nextInt());
+                System.out.println("Veuillez saisir son agilité");
+                player.setAgility(scanner.nextInt());
+                System.out.println("Veuillez saisir son intelligence");
+                player.setIntelligence(scanner.nextInt());
             } catch (InputMismatchException e) {
-                System.out.println("Merci de choisir entre 1 2 ou 3 svp ;)");
+                System.out.println("Tarata");
             }
-            while (tabPlayers[i].characteristicsChecker() == false) {
-                try {
-                    System.out.println("Veuillez saisir sa force");
-                    tabPlayers[i].setStrength(scanner.nextInt());
-                    System.out.println("Veuillez saisir son agilité");
-                    tabPlayers[i].setAgility(scanner.nextInt());
-                    System.out.println("Veuillez saisir son intelligence");
-                    tabPlayers[i].setIntelligence(scanner.nextInt());
-                } catch (InputMismatchException e) {
-                    System.out.println("Hey! les stats du perso doivent être égales à ton niveau\n" +
-                            "tu es de niveau " + tabPlayers[i].getLevel() + "tu as donc " + tabPlayers[i].getLevel() + "à attribuer ^^");
+        } while (player.characteristicsChecker() == false);
+    }
+
+
+    /**
+     * Players attack
+     *
+     * @param player
+     * @ param nbOfAttack
+     */
+
+    public void playersAttacks(Character player, int nbOfAttack) {
+        System.out.println("Choisit ton attaque : \n" +
+                "1 - Attaque Basique \n  2- Attaque Spéciale");
+        do {
+            Scanner scanner = new Scanner(System.in);
+            try {
+                switch (nbOfAttack = scanner.nextInt()) { // normalement il faut un try catch autour?...
+                    case 1:
+                        player.basicAttack();
+                        System.out.println("Joueur" + player.getNumberOfPlayers() + "Utilise " + player.getAttackName() + " et fait " + player.getDamages()
+                                + " de dégats.");
+                        break;
+                    case 2:
+                        player.specialAttack();
+                        System.out.println("Joueur" + player.getNumberOfPlayers() + "Utilise " + player.getAttackName() + " et fait " + player.getDamages()
+                                + " de dégats.");
+                        break;
+                    default:
+                        System.out.println("Hey! Mais cette attaque n'est pas autorisée (pas de coups bas, attention je t'ai à l'oeil...)\n Merci de saisir 1 ou 2 ;)");
                 }
+            } catch (InputMismatchException e) {
+                System.out.println("Nop merci de saisir 1 ou 2...");
             }
-        }
+
+        } while (player.getLife() > 0);
     }
 
-        //???????????????????????????????????????????????????????????????????????????????????????????????????
-        /**
-         * Players attack
-         * @param nbOfAttack
-         */
-
-        public void playersAttacks (int nbOfAttack){
-            for (int i = 0; i < tabPlayers.length; i++) {
-                System.out.println("Joueur " + tabPlayers[i].getNumberOfPlayers() + " ,choisit ton attaque : \n" +
-                        "1 - Attaque Basique \n  2- Attaque Spéciale");
-                do {
-                    switch (nbOfAttack = scanner.nextInt()) { // normalement il faut un try catch autour?...
-                        case 1:
-                            tabPlayers[i].basicAttack();
-                            System.out.println("Joueur" + tabPlayers[i].getNumberOfPlayers() + "Utilise " + tabPlayers[i].getAttackName() + " et fait " + tabPlayers[i].getDamages()
-                                    + " de dégats.");
-                            break;
-                        case 2:
-                            tabPlayers[i].specialAttack();
-                            System.out.println("Joueur" + tabPlayers[i].getNumberOfPlayers() + "Utilise " + tabPlayers[i].getAttackName() + " et fait " + tabPlayers[i].getDamages()
-                                    + " de dégats.");
-                            break;
-                        default:
-                            System.out.println("Hey! Mais cette attaque n'est pas autorisée (pas de coups bas, attention je t'ai à l'oeil...)\n Merci de saisir 1 ou 2 ;)");
-                    }
-                } while (tabPlayers[i].getLife() > 0);
-            }
-        }
+    public Character getPlayer1() {
+        return player1;
     }
+
+    public void setPlayer1(Character player1) {
+        this.player1 = player1;
+    }
+}

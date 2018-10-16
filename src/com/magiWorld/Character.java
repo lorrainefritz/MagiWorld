@@ -44,7 +44,7 @@ public abstract class Character {
      */
     public boolean characteristicsChecker(){ // pour l'instant est en void
         int charactSum = getStrength()+getAgility()+getIntelligence();
-        if (charactSum>characteristicsMax||charactSum<0) {
+        if (charactSum!=level) {
             return false;
         } return true;
 
