@@ -11,8 +11,7 @@ public class GameManager {
 
 
     public GameManager() {
-        initializePlayers(player1);
-        initializePlayers(player2);
+
 
     }
 
@@ -76,7 +75,7 @@ public class GameManager {
                 System.out.println("Veuillez saisir son intelligence");
                 player.setIntelligence(scanner.nextInt());
             } catch (InputMismatchException e) {
-                System.out.println("Tarata");
+                System.out.println("Hey la somme de tes stats doivent être égales à ton niveau!");
             }
         } while (player.characteristicsChecker() == false);
     }
@@ -86,29 +85,35 @@ public class GameManager {
      * Players attack
      *
      * @param player
-     * @ param nbOfAttack
      */
 
-    public void playersAttacks(Character player, int nbOfAttack) {
+    public void playersAttacks(Character player) {
         System.out.println("Choisit ton attaque : \n" +
                 "1 - Attaque Basique \n  2- Attaque Spéciale");
         do {
             Scanner scanner = new Scanner(System.in);
+            int nbOfAttack;
+            boolean bool;
             try {
-                switch (nbOfAttack = scanner.nextInt()) { // normalement il faut un try catch autour?...
-                    case 1:
-                        player.basicAttack();
-                        System.out.println("Joueur" + player.getNumberOfPlayers() + "Utilise " + player.getAttackName() + " et fait " + player.getDamages()
-                                + " de dégats.");
-                        break;
-                    case 2:
-                        player.specialAttack();
-                        System.out.println("Joueur" + player.getNumberOfPlayers() + "Utilise " + player.getAttackName() + " et fait " + player.getDamages()
-                                + " de dégats.");
-                        break;
-                    default:
-                        System.out.println("Hey! Mais cette attaque n'est pas autorisée (pas de coups bas, attention je t'ai à l'oeil...)\n Merci de saisir 1 ou 2 ;)");
-                }
+                do {
+                    switch (nbOfAttack = scanner.nextInt()) {
+                        case 1:
+                            player.basicAttack();
+                            System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName() + " et fait " + player.getDamages()
+                                    + " de dégats.");
+                            bool = true;
+                            break;
+                        case 2:
+                            player.specialAttack();
+                            System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName() + " et fait " + player.getDamages()
+                                    + " de dégats.");
+                            bool = true;
+                            break;
+                        default:
+                            System.out.println("Hey! Mais cette attaque n'est pas autorisée (pas de coups bas, attention je t'ai à l'oeil...)\n Merci de saisir 1 ou 2 ;)");
+                            bool = false;
+                    }
+                } while (bool != true);
             } catch (InputMismatchException e) {
                 System.out.println("Nop merci de saisir 1 ou 2...");
             }

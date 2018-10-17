@@ -42,7 +42,7 @@ public abstract class Character {
     /**
      * Check characteristics sum.
      */
-    public boolean characteristicsChecker(){ // pour l'instant est en void
+    public boolean characteristicsChecker(){
         int charactSum = getStrength()+getAgility()+getIntelligence();
         if (charactSum!=level) {
             return false;
