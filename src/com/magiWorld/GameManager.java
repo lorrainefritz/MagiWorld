@@ -11,8 +11,6 @@ public class GameManager {
 
 
     public GameManager() {
-
-
     }
 
     /**
@@ -65,8 +63,10 @@ public class GameManager {
         do {
             try {
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("Veuillez saisir son niveau");
-                player.setLevel(scanner.nextInt());
+                do {
+                    System.out.println("Veuillez saisir son niveau");
+                    player.setLevel(scanner.nextInt());
+                } while (player.levelChecker() == false);
                 player.setLife(player.getLevel() * 5);
                 System.out.println("Veuillez saisir sa force");
                 player.setStrength(scanner.nextInt());
@@ -75,7 +75,8 @@ public class GameManager {
                 System.out.println("Veuillez saisir son intelligence");
                 player.setIntelligence(scanner.nextInt());
             } catch (InputMismatchException e) {
-                System.out.println("Hey la somme de tes stats doivent être égales à ton niveau!");
+                System.out.println("Merci de saisir un entier compris entre 1 et 100");
+
             }
         } while (player.characteristicsChecker() == false);
     }
