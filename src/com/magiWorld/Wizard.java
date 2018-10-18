@@ -9,6 +9,7 @@ public class Wizard extends Character {
     public Wizard(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         setDescriptionCharacter("Abracadabra je suis le sorcier : bon sérieusement qu'est ce qu'on brûle aujourd'hui?");
+
     }
 
     /**

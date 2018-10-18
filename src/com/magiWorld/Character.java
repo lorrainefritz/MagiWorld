@@ -12,56 +12,63 @@ public abstract class Character {
 
 
     public Character(int level, int strength, int agility, int intelligence) {
-        characteristicsChecker();
         this.level = level;
         this.strength = strength;
         this.agility = agility;
         this.intelligence = intelligence;
-        life = 5*level;
+        life = 5 * level;
         characteristicsMax = level;
     }
-
 
 
     /**
      * Run process for a basic attack.
      */
     public abstract int basicAttack();
+
     /**
      * Run process for a special attack.
      */
     public abstract int specialAttack();
 
     /**
-     *Description of the Character.
+     * Description of the Character.
      */
-    public String toString(){
-        return   descriptionCharacter+ " Je suis le Joueur "+ numberOfPlayers+ ", je suis niveau "+ level+ ", je possède "
-                + life+ " de vitalité, "+ strength+ " de force, "+ agility+ " d'agilité et "+ intelligence+ " d'intelligence.";
+    public String toString() {
+        return descriptionCharacter + " Je suis le Joueur " + numberOfPlayers + ", je suis niveau " + level + ", je possède "
+                + life + " de vitalité, " + strength + " de force, " + agility + " d'agilité et " + intelligence + " d'intelligence.";
     }
+
     /**
      * Check characteristics sum.
      */
-    public boolean characteristicsChecker(){
-        int charactSum = getStrength()+getAgility()+getIntelligence();
-        if (charactSum!=level) {
-            System.out.println("Hey la somme de tes stats doivent être égales à ton niveau! hip ");
+    public boolean characteristicsChecker() {
+        int charactSum = getStrength() + getAgility() + getIntelligence();
+        if (charactSum != level || charactSum == 0) {
+            if (charactSum != 0) {
+                System.out.println("Hey la somme de tes stats doivent être égales à ton niveau! hip ");
+            }
             return false;
-        } return true;
+        }
+        return true;
     }
+
     /**
      * Check level
      */
     public boolean levelChecker() {
         if (getLevel() > 100 || getLevel() < 1) {
-            System.out.println("Le niveau doit être compris entre 1-100");
+            if (getLevel() != 0) {
+                System.out.println("Le niveau doit être compris entre 1-100");
+            }
             return false;
-        } return true;
+        }
+        return true;
     }
 
 
     /**
-     *getters and setters.
+     * getters and setters.
      */
 
     public int getLevel() {

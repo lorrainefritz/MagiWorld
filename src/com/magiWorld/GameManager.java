@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GameManager {
-    private Character[] tabPlayers;
     private Character player1, player2;
 
 
@@ -60,13 +59,13 @@ public class GameManager {
      */
 
     public void initializePlayers(Character player) {// en paramètres on utilise player pour pouvoir gérer les players => astuce
-        do {
+        while (player.characteristicsChecker() == false) {
             try {
                 Scanner scanner = new Scanner(System.in);
-                do {
+                while (player.levelChecker() == false) {
                     System.out.println("Veuillez saisir son niveau");
                     player.setLevel(scanner.nextInt());
-                } while (player.levelChecker() == false);
+                }
                 player.setLife(player.getLevel() * 5);
                 System.out.println("Veuillez saisir sa force");
                 player.setStrength(scanner.nextInt());
@@ -76,9 +75,8 @@ public class GameManager {
                 player.setIntelligence(scanner.nextInt());
             } catch (InputMismatchException e) {
                 System.out.println("Merci de saisir un entier compris entre 1 et 100");
-
             }
-        } while (player.characteristicsChecker() == false);
+        }
     }
 
 
