@@ -43,21 +43,23 @@ public abstract class Character {
      * Check characteristics sum.
      */
     public boolean characteristicsChecker() {
-        int charactSum = getStrength() + getAgility() + getIntelligence();
-        if (charactSum != level || charactSum == 0) {
+        int charactSum = strength + agility + intelligence; // changement => anterieurmt était notés getStrength() + getAgility()+ ...
+        if (charactSum != level || charactSum == 0) { // GROS SOUCIS AVEC CETTE CONDITION !!!
             if (charactSum != 0) {
                 System.out.println("Hey la somme de tes stats doivent être égales à ton niveau! hip ");
             }
             return false;
+        } else {
+            return true;
         }
-        return true;
+
     }
 
     /**
      * Check level
      */
     public boolean levelChecker() {
-        if (getLevel() > 100 || getLevel() < 1) {
+        if (getLevel() > 100 || getLevel() < 1) { // changer les get en simplement level?
             if (getLevel() != 0) {
                 System.out.println("Le niveau doit être compris entre 1-100");
             }

@@ -14,9 +14,11 @@ public class Main {
        /* gameManager.initializePlayers(thief);
         gameManager.playersAttacks(thief);
 */
-       gameManager.initializePlayers(wizard);
-        gameManager.playersAttacks(wizard);
 
+   /*    gameManager.initializePlayers(wizard);
+        gameManager.playersAttacks(wizard);
+*/
+gameManager.runGame();
 
     }
 
