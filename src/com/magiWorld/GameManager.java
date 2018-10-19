@@ -37,18 +37,18 @@ public class GameManager {
      */
     public Character chooseClass(int nbOfClass) {
         switch (nbOfClass) {
-            case 1:
-                System.out.println("Vous avez choisi le Guerrier");// texte temporaire
-                return new Warrior();
-            case 2:
-                System.out.println("Vous avez choisi le Roublard");
-                return new Thief(0, 0, 0, 0);// rajouter un constructeur
-            case 3:
-                System.out.println("Vous avez choisi le Sorcier");
-                return new Wizard(0, 0, 0, 0);
-            default:
-                System.out.println("Hey! Mais en fait cette classe de perso n'a pas encore été programmée!\n");
-                return null;
+                case 1:
+                    System.out.println("Vous avez choisi le Guerrier");//
+                    return new Warrior();
+                case 2:
+                    System.out.println("Vous avez choisi le Roublard");
+                    return new Thief();
+                case 3:
+                    System.out.println("Vous avez choisi le Sorcier");
+                    return new Wizard();
+                default:
+                    System.out.println("Hey! Mais en fait cette classe de perso n'a pas encore été programmée!\n");
+                    return null;
         }
     }
 
@@ -76,7 +76,7 @@ public class GameManager {
                 player.setIntelligence(scanner.nextInt());
 
             } catch (InputMismatchException e) {
-                System.out.println("Merci de saisir un entier compris entre 1 et 100");
+                System.out.println("Merci de saisir un entier compris entre 1 et 100 ");
 
             }
         }
@@ -128,21 +128,22 @@ public class GameManager {
     public void runGame() {
         Scanner scanner = new Scanner(System.in);
         int i = 1;
+        // INTRO
         displayIntroduction();
-        displayAvailableClasses();
+        //INITILISATION DE PERSO
         try {
+            displayAvailableClasses();
             player1 = initializePlayers(chooseClass(scanner.nextInt()));
             player1.setNumberOfPlayers(1);
             System.out.println(player1);
             displayAvailableClasses();
             player2 = initializePlayers(chooseClass(scanner.nextInt()));
-
             player2.setNumberOfPlayers(2);
             System.out.println(player2);
         } catch (InputMismatchException e) {
             System.out.println("Merci de rentrer un chiffre valide");
         }
-
+        //BOUCLE DE COMBAT
         do {
             if (player1.getLife() > 0 && player2.getLife()>0) {
                 System.out.println("\nround n° " + i);
@@ -157,12 +158,17 @@ public class GameManager {
                 i++;
             }
         } while (player1.getLife() > 0 && player2.getLife() > 0);
+        // FIN DU JEU
         System.out.println("Fin du jeu");
         if (player1.getLife() > 0) {
             System.out.println("Le joueur 1 est victorieux");
         } else {
             System.out.println("Le joueur 2 est victorieux");
         }
+        System.out.println("\n" +
+                "                o    /\\-*****-/\\     o\n" +
+                "                 \\  (  .    .  )    /\n" +
+                "                  \\    === 0 ===   /\n" );
     }
 
 }
