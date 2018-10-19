@@ -35,7 +35,7 @@ public abstract class Character {
      * Description of the Character.
      */
     public String toString() {
-        return descriptionCharacter + " Je suis le Joueur " + numberOfPlayers + ", je suis niveau " + level + ", je possède "
+        return descriptionCharacter + "Je suis le Joueur " + numberOfPlayers + ", je suis niveau " + level + ", je possède "
                 + life + " de vitalité, " + strength + " de force, " + agility + " d'agilité et " + intelligence + " d'intelligence.";
     }
 
@@ -43,24 +43,22 @@ public abstract class Character {
      * Check characteristics sum.
      */
     public boolean characteristicsChecker() {
-        int charactSum = strength + agility + intelligence; // changement => anterieurmt était notés getStrength() + getAgility()+ ...
-        if (charactSum != level || charactSum == 0) { // GROS SOUCIS AVEC CETTE CONDITION !!!
-            if (charactSum != 0) {
-                System.out.println("Hey la somme de tes stats doivent être égales à ton niveau! hip ");
+      int charactSum = strength + agility + intelligence;
+        if (charactSum != level || charactSum == 0) {
+          if (charactSum != 0) {
+              System.out.println("Attention la somme de tes stats doit être égale à ton niveau!");
             }
             return false;
-        } else {
-            return true;
-        }
-
+       }
+       return true;
     }
 
     /**
      * Check level
      */
     public boolean levelChecker() {
-        if (getLevel() > 100 || getLevel() < 1) { // changer les get en simplement level?
-            if (getLevel() != 0) {
+        if (level > 100 || level < 1) { // changer les get en simplement level? Enfin ça marche donc pas touche
+            if (level != 0 || level==0) {
                 System.out.println("Le niveau doit être compris entre 1-100");
             }
             return false;

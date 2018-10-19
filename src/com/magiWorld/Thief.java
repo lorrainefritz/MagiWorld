@@ -3,11 +3,11 @@ package com.magiWorld;
 public class Thief extends Character {
     public Thief(){
         super(0, 0, 0, 0);
-        setDescriptionCharacter("(whispering) je suis le roublard : moins fort, penses à ma discretion bon sang!");
+        setDescriptionCharacter("(whispering) je suis le roublard : moins fort, penses à ma discretion bon sang!\n");
     }
     public Thief(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
-        setDescriptionCharacter("(whispering) je suis le roublard : moins fort, penses à ma discretion bon sang!");
+        setDescriptionCharacter("(whispering) je suis le roublard : moins fort, penses à ma discretion bon sang!\n");
     }
     /**
      * Run process for a basic attack.

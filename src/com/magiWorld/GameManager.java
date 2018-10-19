@@ -59,6 +59,7 @@ public class GameManager {
      */
 
     public Character initializePlayers(Character player) {
+
         while (player.characteristicsChecker() == false) {
             try {
                 Scanner scanner = new Scanner(System.in);
@@ -73,10 +74,10 @@ public class GameManager {
                 player.setAgility(scanner.nextInt());
                 System.out.println("Veuillez saisir son intelligence");
                 player.setIntelligence(scanner.nextInt());
-                return player;
+
             } catch (InputMismatchException e) {
                 System.out.println("Merci de saisir un entier compris entre 1 et 100");
-                return null;
+
             }
         }
         return player;
@@ -126,6 +127,7 @@ public class GameManager {
 
     public void runGame() {
         Scanner scanner = new Scanner(System.in);
+        int i = 1;
         displayIntroduction();
         displayAvailableClasses();
         try {
@@ -141,22 +143,26 @@ public class GameManager {
             System.out.println("Merci de rentrer un chiffre valide");
         }
 
-        while (player1.getLife() > 0 && player2.getLife() > 0) {
-            System.out.println("La vie du joueur 1 est de " + player1.getLife());
-            playersAttacks(player1);
-            player2.setLife(player2.getLife() - player1.getDamages());
-            System.out.println("Vie du joueur 2 " + player2.getLife());
-            playersAttacks(player2);
-            player1.setLife(player1.getLife() - player2.getDamages());
-        }
+        do {
+            if (player1.getLife() > 0 && player2.getLife()>0) {
+                System.out.println("\nround n° " + i);
+                System.out.println("\nLa vie du joueur 1 est de " + player1.getLife());
+                playersAttacks(player1);
+                player2.setLife(player2.getLife() - player1.getDamages());
+            }
+            if (player2.getLife() > 0) {
+                System.out.println("\nLa vie du joueur 2 est de " + player2.getLife());
+                playersAttacks(player2);
+                player1.setLife(player1.getLife() - player2.getDamages());
+                i++;
+            }
+        } while (player1.getLife() > 0 && player2.getLife() > 0);
         System.out.println("Fin du jeu");
+        if (player1.getLife() > 0) {
+            System.out.println("Le joueur 1 est victorieux");
+        } else {
+            System.out.println("Le joueur 2 est victorieux");
+        }
     }
 
-    public Character getPlayer1() {
-        return player1;
-    }
-
-    public void setPlayer1(Character player1) {
-        this.player1 = player1;
-    }
 }
