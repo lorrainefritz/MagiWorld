@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class GameManager {
     private Character player1, player2;
+    int nbOfAttack, nbOfClass;
 
 
     public GameManager() {
@@ -35,20 +36,20 @@ public class GameManager {
      *
      * @param nbOfClass
      */
-    public Character chooseClass(int nbOfClass) {
+    public Character chooseClass( int nbOfClass) {
         switch (nbOfClass) {
-                case 1:
-                    System.out.println("Vous avez choisi le Guerrier");//
-                    return new Warrior();
-                case 2:
-                    System.out.println("Vous avez choisi le Roublard");
-                    return new Thief();
-                case 3:
-                    System.out.println("Vous avez choisi le Sorcier");
-                    return new Wizard();
-                default:
-                    System.out.println("Hey! Mais en fait cette classe de perso n'a pas encore été programmée!\n");
-                    return null;
+            case 1:
+                System.out.println("Vous avez choisi le Guerrier");//
+                return new Warrior();
+            case 2:
+                System.out.println("Vous avez choisi le Roublard");
+                return new Thief();
+            case 3:
+                System.out.println("Vous avez choisi le Sorcier");
+                return new Wizard();
+            default:
+                System.out.println("Hey! Mais en fait cette classe de perso n'a pas encore été programmée!\n");
+                return null;
         }
     }
 
@@ -94,21 +95,18 @@ public class GameManager {
         System.out.println("Joueur " + player.getNumberOfPlayers() + " Choisit ton attaque : \n" +
                 "1 - Attaque Basique \n  2- Attaque Spéciale");
         Scanner scanner = new Scanner(System.in);
-        int nbOfAttack;
         boolean bool;
         try {
             do {
                 switch (nbOfAttack = scanner.nextInt()) {
                     case 1:
                         player.basicAttack();
-                        System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName() + " et fait " + player.getDamages()
-                                + " de dégats.");
+                        System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName());
                         bool = true;
                         break;
                     case 2:
                         player.specialAttack();
-                        System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName() + " et fait " + player.getDamages()
-                                + " de dégats.");
+                        System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName() );
                         bool = true;
                         break;
                     default:
@@ -145,16 +143,28 @@ public class GameManager {
         }
         //BOUCLE DE COMBAT
         do {
-            if (player1.getLife() > 0 && player2.getLife()>0) {
+            if (player1.getLife() > 0 && player2.getLife() > 0) {
                 System.out.println("\nround n° " + i);
                 System.out.println("\nLa vie du joueur 1 est de " + player1.getLife());
                 playersAttacks(player1);
-                player2.setLife(player2.getLife() - player1.getDamages());
+                if (nbOfClass == 1 || nbOfAttack == 1) {
+                    player2.setLife(player2.getLife() - player1.getDamages());
+                    System.out.println(" et fait " + player1.getDamages()
+                            + " de dégats.");
+                } else {
+                    System.out.println("Ok");
+                }
             }
             if (player2.getLife() > 0) {
                 System.out.println("\nLa vie du joueur 2 est de " + player2.getLife());
                 playersAttacks(player2);
-                player1.setLife(player1.getLife() - player2.getDamages());
+                if (nbOfClass == 1 || nbOfAttack == 1) {
+                    player1.setLife(player1.getLife() - player2.getDamages());
+                    System.out.println(" et fait " + player2.getDamages()
+                            + " de dégats.");
+                } else {
+                    System.out.println("Ok");
+                }
                 i++;
             }
         } while (player1.getLife() > 0 && player2.getLife() > 0);
@@ -168,7 +178,7 @@ public class GameManager {
         System.out.println("\n" +
                 "                o    /\\-*****-/\\     o\n" +
                 "                 \\  (  .    .  )    /\n" +
-                "                  \\    === 0 ===   /\n" );
+                "                  \\    === 0 ===   /\n");
     }
 
 }
