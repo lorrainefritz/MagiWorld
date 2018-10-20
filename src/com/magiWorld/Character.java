@@ -7,8 +7,9 @@ public abstract class Character {
     private String descriptionCharacter;
     private int numberOfPlayers;
     private int characteristicsMax;
-    private String attackName;
+    private String attackName, attackEffects;
     private int damages;
+    private int numberOfClass;
 
 
     public Character(int level, int strength, int agility, int intelligence) {
@@ -150,4 +151,21 @@ public abstract class Character {
     public void setAttackName(String attackName) {
         this.attackName = attackName;
     }
+
+    public String getAttackEffects() {
+        return attackEffects;
+    }
+
+    public void setAttackEffects(String attackEffects) {
+        this.attackEffects = attackEffects;
+    }
+
+    public int getNumberOfClass() {
+        return numberOfClass;
+    }
+
+    public void setNumberOfClass(int numberOfClass) {
+        this.numberOfClass = numberOfClass;
+    }
 }
+

@@ -5,11 +5,13 @@ public class Warrior extends Character {
     public Warrior(){
         super(0, 0, 0, 0);
         setDescriptionCharacter("Woarg moi grand guerrier élu de Crom : où moi taper?\n");
+        setNumberOfClass(1);
     }
 
     public Warrior(int level, int strength, int agility, int intelligence) {
         super(level, strength, agility, intelligence);
         setDescriptionCharacter("Woarg moi grand guerrier élu de Crom : où moi taper?\n");
+        setNumberOfClass(1);
     }
 
     /**
@@ -30,10 +32,11 @@ public class Warrior extends Character {
     @Override
     public int specialAttack() {
         setAttackName("Coup de Rage");
-       int damages = 2*getStrength();
+        int damages = 2*getStrength();
+       setDamages(damages);
        int malus = (int)Math.round(((double)getStrength()/2));
        setLife(getLife()-malus);
-       setDamages(damages);
+       setAttackEffects(" perd "+ malus +" PV ");
         return damages;
     }
 

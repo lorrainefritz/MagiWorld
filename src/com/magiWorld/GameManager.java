@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class GameManager {
     private Character player1, player2;
-    int nbOfAttack, nbOfClass;
+    int nbOfAttack;
 
 
     public GameManager() {
@@ -17,7 +17,9 @@ public class GameManager {
      * Display introduction
      */
     public void displayIntroduction() {
-        System.out.println("Bienvenue à MagiWorld");
+        System.out.println("********************************************************************************************");
+        System.out.println("                        Bienvenue à MagiWorld");
+        System.out.println("********************************************************************************************");
     }
 
     /**
@@ -36,7 +38,7 @@ public class GameManager {
      *
      * @param nbOfClass
      */
-    public Character chooseClass( int nbOfClass) {
+    public Character chooseClass(int nbOfClass) {
         switch (nbOfClass) {
             case 1:
                 System.out.println("Vous avez choisi le Guerrier");//
@@ -93,7 +95,7 @@ public class GameManager {
 
     public void playersAttacks(Character player) {
         System.out.println("Joueur " + player.getNumberOfPlayers() + " Choisit ton attaque : \n" +
-                "1 - Attaque Basique \n  2- Attaque Spéciale");
+                "1 - Attaque Basique \n2- Attaque Spéciale");
         Scanner scanner = new Scanner(System.in);
         boolean bool;
         try {
@@ -106,7 +108,7 @@ public class GameManager {
                         break;
                     case 2:
                         player.specialAttack();
-                        System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName() );
+                        System.out.println("Joueur " + player.getNumberOfPlayers() + " Utilise " + player.getAttackName());
                         bool = true;
                         break;
                     default:
@@ -117,6 +119,23 @@ public class GameManager {
         } catch (InputMismatchException e) {
             System.out.println("Nop merci de saisir 1 ou 2...");
         }
+    }
+
+
+    /**
+     * Game ending
+     */
+    public void gameEnding() {
+        System.out.println("Fin du jeu");
+        if (player1.getLife() > 0) {
+            System.out.println("Le joueur 1 est victorieux");
+        } else {
+            System.out.println("Le joueur 2 est victorieux");
+        }
+        System.out.println("\n" +
+                "                o    /\\-*****-/\\    o\n" +
+                "                 \\  (  (|)  (|) )  /\n" +
+                "                  \\    === 0 ===  /\n");
     }
 
     /**
@@ -143,42 +162,50 @@ public class GameManager {
         }
         //BOUCLE DE COMBAT
         do {
+
             if (player1.getLife() > 0 && player2.getLife() > 0) {
                 System.out.println("\nround n° " + i);
+
+                //PLAYER 1
                 System.out.println("\nLa vie du joueur 1 est de " + player1.getLife());
                 playersAttacks(player1);
-                if (nbOfClass == 1 || nbOfAttack == 1) {
+                if (nbOfAttack == 1) {
                     player2.setLife(player2.getLife() - player1.getDamages());
-                    System.out.println(" et fait " + player1.getDamages()
+                    System.out.println("et fait " + player1.getDamages()
                             + " de dégats.");
                 } else {
-                    System.out.println("Ok");
+                    if (player1.getNumberOfClass() == 1) {
+                        player2.setLife(player2.getLife() - player1.getDamages());
+                        System.out.println("fait " + player1.getDamages()
+                                + " de dégats " + player1.getAttackEffects());
+                    } else {
+                        System.out.println(player1.getAttackEffects());
+                    }
                 }
             }
+
+            //PLAYER 2
             if (player2.getLife() > 0) {
                 System.out.println("\nLa vie du joueur 2 est de " + player2.getLife());
                 playersAttacks(player2);
-                if (nbOfClass == 1 || nbOfAttack == 1) {
+                if (nbOfAttack == 1) {
                     player1.setLife(player1.getLife() - player2.getDamages());
-                    System.out.println(" et fait " + player2.getDamages()
-                            + " de dégats.");
+                    System.out.println("fait " + player2.getDamages() + " de dégats "
+                            + player2.getAttackEffects());
                 } else {
-                    System.out.println("Ok");
+                    if (player2.getNumberOfClass() == 1) {
+                        player1.setLife(player1.getLife() - player2.getDamages());
+                        System.out.println("fait " + player2.getDamages()+ " de dégats "
+                                + player2.getAttackEffects());
+                    } else {
+                        System.out.println(player2.getAttackEffects());
+                    }
                 }
                 i++;
             }
         } while (player1.getLife() > 0 && player2.getLife() > 0);
         // FIN DU JEU
-        System.out.println("Fin du jeu");
-        if (player1.getLife() > 0) {
-            System.out.println("Le joueur 1 est victorieux");
-        } else {
-            System.out.println("Le joueur 2 est victorieux");
-        }
-        System.out.println("\n" +
-                "                o    /\\-*****-/\\     o\n" +
-                "                 \\  (  .    .  )    /\n" +
-                "                  \\    === 0 ===   /\n");
+        gameEnding();
     }
 
 }
