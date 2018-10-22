@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class GameManager {
     private Character player1, player2;
     int nbOfAttack;
-    int i;
+    int i = 1;
 
 
     public GameManager() {
@@ -55,6 +55,7 @@ public class GameManager {
                 return null;
         }
     }
+
 
     /**
      * Initialize players
@@ -133,39 +134,50 @@ public class GameManager {
             System.out.println("\nround n° " + i);
 
             //PLAYER 1
-            System.out.println("\nLa vie du joueur 1 est de " + player1.getLife());
-            playersAttacks(player1);
-            if (nbOfAttack == 1) {
-                player2.setLife(player2.getLife() - player1.getDamages());
-                System.out.println("et fait " + player1.getDamages()
-                        + " de dégats.");
-            } else {
-                if (player1.getNumberOfClass() == 1) {
+            while (nbOfAttack != 1 && nbOfAttack != 2) {
+                System.out.println("\nLa vie du joueur 1 est de " + player1.getLife());
+                playersAttacks(player1);
+                if (nbOfAttack == 1) {
                     player2.setLife(player2.getLife() - player1.getDamages());
-                    System.out.println("fait " + player1.getDamages()
-                            + " de dégats " + player1.getAttackEffects());
+                    System.out.println("et fait " + player1.getDamages()
+                            + " de dégats.");
                 } else {
-                    System.out.println(player1.getAttackEffects());
+                    if (nbOfAttack == 0) {
+                        System.out.println("à nouveau : ");
+                    } else if (player1.getNumberOfClass() == 1) {
+                        player2.setLife(player2.getLife() - player1.getDamages());
+                        System.out.println("fait " + player1.getDamages()
+                                + " de dégats " + player1.getAttackEffects());
+                    } else {
+                        System.out.println(player1.getAttackEffects());
+                    }
                 }
             }
-        }
+            //PLAYER 2
+            nbOfAttack = 0;
 
-        //PLAYER 2
-        if (player2.getLife() > 0) {
-            System.out.println("\nLa vie du joueur 2 est de " + player2.getLife());
-            playersAttacks(player2);
-            if (nbOfAttack == 1) {
-                player1.setLife(player1.getLife() - player2.getDamages());
-                System.out.println("fait " + player2.getDamages() + " de dégats ");
-            } else {
-                if (player2.getNumberOfClass() == 1) {
-                    player1.setLife(player1.getLife() - player2.getDamages());
-                    System.out.println("fait " + player2.getDamages() + " de dégats "
-                            + player2.getAttackEffects());
-                } else {
-                    System.out.println(player2.getAttackEffects());
+            if (player2.getLife() > 0) {
+                while (nbOfAttack != 1 && nbOfAttack != 2) {
+                    System.out.println("\nLa vie du joueur 2 est de " + player2.getLife());
+                    playersAttacks(player2);
+                    if (nbOfAttack == 1) {
+                        player1.setLife(player1.getLife() - player2.getDamages());
+                        System.out.println("fait " + player2.getDamages() + " de dégats ");
+                    } else {
+                        if (nbOfAttack == 0) {
+                            System.out.println("à nouveau : ");
+                        } else if (player2.getNumberOfClass() == 1) {
+                            player1.setLife(player1.getLife() - player2.getDamages());
+                            System.out.println("fait " + player2.getDamages() + " de dégats "
+                                    + player2.getAttackEffects());
+                        } else {
+                            System.out.println(player2.getAttackEffects());
+                        }
+                    }
                 }
+
             }
+            nbOfAttack = 0;
             i++;
         }
     }
@@ -193,7 +205,7 @@ public class GameManager {
 
     public void runGame() {
         Scanner scanner = new Scanner(System.in);
-        int i = 1;
+
         // INTRO
         displayIntroduction();
         //INITILISATION DE PERSO
@@ -212,6 +224,7 @@ public class GameManager {
         //BOUCLE DE COMBAT
         do {
             attacksgestion(player1, player2);
+
         } while (player1.getLife() > 0 && player2.getLife() > 0);
         // FIN DU JEU
         gameEnding();
