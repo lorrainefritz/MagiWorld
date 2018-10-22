@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class GameManager {
     private Character player1, player2;
     int nbOfAttack;
+    int i;
 
 
     public GameManager() {
@@ -121,6 +122,54 @@ public class GameManager {
         }
     }
 
+    /**
+     * Gestion of attacks
+     *
+     * @param player1
+     * @param player2
+     */
+    public void attacksgestion(Character player1, Character player2) {
+        if (player1.getLife() > 0 && player2.getLife() > 0) {
+            System.out.println("\nround n° " + i);
+
+            //PLAYER 1
+            System.out.println("\nLa vie du joueur 1 est de " + player1.getLife());
+            playersAttacks(player1);
+            if (nbOfAttack == 1) {
+                player2.setLife(player2.getLife() - player1.getDamages());
+                System.out.println("et fait " + player1.getDamages()
+                        + " de dégats.");
+            } else {
+                if (player1.getNumberOfClass() == 1) {
+                    player2.setLife(player2.getLife() - player1.getDamages());
+                    System.out.println("fait " + player1.getDamages()
+                            + " de dégats " + player1.getAttackEffects());
+                } else {
+                    System.out.println(player1.getAttackEffects());
+                }
+            }
+        }
+
+        //PLAYER 2
+        if (player2.getLife() > 0) {
+            System.out.println("\nLa vie du joueur 2 est de " + player2.getLife());
+            playersAttacks(player2);
+            if (nbOfAttack == 1) {
+                player1.setLife(player1.getLife() - player2.getDamages());
+                System.out.println("fait " + player2.getDamages() + " de dégats ");
+            } else {
+                if (player2.getNumberOfClass() == 1) {
+                    player1.setLife(player1.getLife() - player2.getDamages());
+                    System.out.println("fait " + player2.getDamages() + " de dégats "
+                            + player2.getAttackEffects());
+                } else {
+                    System.out.println(player2.getAttackEffects());
+                }
+            }
+            i++;
+        }
+    }
+
 
     /**
      * Game ending
@@ -162,47 +211,7 @@ public class GameManager {
         }
         //BOUCLE DE COMBAT
         do {
-
-            if (player1.getLife() > 0 && player2.getLife() > 0) {
-                System.out.println("\nround n° " + i);
-
-                //PLAYER 1
-                System.out.println("\nLa vie du joueur 1 est de " + player1.getLife());
-                playersAttacks(player1);
-                if (nbOfAttack == 1) {
-                    player2.setLife(player2.getLife() - player1.getDamages());
-                    System.out.println("et fait " + player1.getDamages()
-                            + " de dégats.");
-                } else {
-                    if (player1.getNumberOfClass() == 1) {
-                        player2.setLife(player2.getLife() - player1.getDamages());
-                        System.out.println("fait " + player1.getDamages()
-                                + " de dégats " + player1.getAttackEffects());
-                    } else {
-                        System.out.println(player1.getAttackEffects());
-                    }
-                }
-            }
-
-            //PLAYER 2
-            if (player2.getLife() > 0) {
-                System.out.println("\nLa vie du joueur 2 est de " + player2.getLife());
-                playersAttacks(player2);
-                if (nbOfAttack == 1) {
-                    player1.setLife(player1.getLife() - player2.getDamages());
-                    System.out.println("fait " + player2.getDamages() + " de dégats "
-                            + player2.getAttackEffects());
-                } else {
-                    if (player2.getNumberOfClass() == 1) {
-                        player1.setLife(player1.getLife() - player2.getDamages());
-                        System.out.println("fait " + player2.getDamages()+ " de dégats "
-                                + player2.getAttackEffects());
-                    } else {
-                        System.out.println(player2.getAttackEffects());
-                    }
-                }
-                i++;
-            }
+            attacksgestion(player1, player2);
         } while (player1.getLife() > 0 && player2.getLife() > 0);
         // FIN DU JEU
         gameEnding();
