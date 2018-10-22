@@ -205,22 +205,38 @@ public class GameManager {
 
     public void runGame() {
         Scanner scanner = new Scanner(System.in);
+        int choosenClass = 0;
 
         // INTRO
         displayIntroduction();
         //INITILISATION DE PERSO
+        //Player 1
         try {
-            displayAvailableClasses();
-            player1 = initializePlayers(chooseClass(scanner.nextInt()));
-            player1.setNumberOfPlayers(1);
-            System.out.println(player1);
-            displayAvailableClasses();
-            player2 = initializePlayers(chooseClass(scanner.nextInt()));
-            player2.setNumberOfPlayers(2);
-            System.out.println(player2);
+            do {
+                displayAvailableClasses();
+                choosenClass = scanner.nextInt();
+
+                if (choosenClass == 1 ^ choosenClass == 2 ^ choosenClass==3) {
+                    player1 = initializePlayers(chooseClass(choosenClass));
+                    player1.setNumberOfPlayers(1);
+                    System.out.println(player1);
+                }
+            } while (choosenClass != 1 && choosenClass != 2 && choosenClass!=3);
+
+            //Player 2
+            do {
+                displayAvailableClasses();
+                choosenClass = scanner.nextInt();
+                if (choosenClass == 1 ^ choosenClass == 2 ^choosenClass==3) {
+                    player2 = initializePlayers(chooseClass(choosenClass));
+                    player2.setNumberOfPlayers(2);
+                    System.out.println(player2);
+                }
+            } while (choosenClass != 1 && choosenClass != 2 && choosenClass!=3);
         } catch (InputMismatchException e) {
-            System.out.println("Merci de rentrer un chiffre valide");
+            System.out.println("Merci de rentrer 1 2 ou 3 : ");
         }
+
         //BOUCLE DE COMBAT
         do {
             attacksgestion(player1, player2);
