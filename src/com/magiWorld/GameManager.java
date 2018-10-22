@@ -35,7 +35,7 @@ public class GameManager {
 
     /**
      * Display a Selected Character
-     * @param nbOfClass
+     * @param nbOfClass the number of class that would be choosen
      */
    private Character chooseClass(int nbOfClass) {
         switch (nbOfClass) {
@@ -58,7 +58,7 @@ public class GameManager {
     /**
      * Initialize players
      *
-     * @param player
+     * @param player a generalistic player
      */
 
     private Character initializePlayers(Character player) {
@@ -90,7 +90,7 @@ public class GameManager {
     /**
      * Players attack
      *
-     * @param player
+     * @param player a generalistic player
      */
 
     private void playersAttacks(Character player) {
@@ -124,8 +124,8 @@ public class GameManager {
     /**
      * Gestion of attacks
      *
-     * @param player1
-     * @param player2
+     * @param player1 first player
+     * @param player2 second player
      */
     private void attacksgestion(Character player1, Character player2) {
         if (player1.getLife() > 0 && player2.getLife() > 0) {
