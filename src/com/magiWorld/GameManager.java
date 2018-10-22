@@ -1,14 +1,13 @@
 package com.magiWorld;
 
-import java.util.ArrayList;
+
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class GameManager {
     private Character player1, player2;
-    int nbOfAttack;
-    int i = 1;
+    private int nbOfAttack;
+    private int i = 1;
 
 
     public GameManager() {
@@ -17,7 +16,7 @@ public class GameManager {
     /**
      * Display introduction
      */
-    public void displayIntroduction() {
+    private void displayIntroduction() {
         System.out.println("********************************************************************************************");
         System.out.println("                        Bienvenue à MagiWorld");
         System.out.println("********************************************************************************************");
@@ -26,7 +25,7 @@ public class GameManager {
     /**
      * Display all available classes.
      */
-    public void displayAvailableClasses() {
+    private void displayAvailableClasses() {
         System.out.println("Veuillez choisir la classe de votre personnage ");
         System.out.println("1 - Guerrier");
         System.out.println("2 - Roublard");
@@ -36,10 +35,9 @@ public class GameManager {
 
     /**
      * Display a Selected Character
-     *
      * @param nbOfClass
      */
-    public Character chooseClass(int nbOfClass) {
+   private Character chooseClass(int nbOfClass) {
         switch (nbOfClass) {
             case 1:
                 System.out.println("Vous avez choisi le Guerrier");//
@@ -63,7 +61,7 @@ public class GameManager {
      * @param player
      */
 
-    public Character initializePlayers(Character player) {
+    private Character initializePlayers(Character player) {
 
         while (player.characteristicsChecker() == false) {
             try {
@@ -95,7 +93,7 @@ public class GameManager {
      * @param player
      */
 
-    public void playersAttacks(Character player) {
+    private void playersAttacks(Character player) {
         System.out.println("Joueur " + player.getNumberOfPlayers() + " Choisit ton attaque : \n" +
                 "1 - Attaque Basique \n2- Attaque Spéciale");
         Scanner scanner = new Scanner(System.in);
@@ -117,7 +115,7 @@ public class GameManager {
                         System.out.println("Hey! Mais cette attaque n'est pas autorisée (pas de coups bas, attention je t'ai à l'oeil...)\n Merci de saisir 1 ou 2 ;)");
                         bool = false;
                 }
-            } while (bool != true);
+            } while (!bool);
         } catch (InputMismatchException e) {
             System.out.println("Nop merci de saisir 1 ou 2...");
         }
@@ -129,7 +127,7 @@ public class GameManager {
      * @param player1
      * @param player2
      */
-    public void attacksgestion(Character player1, Character player2) {
+    private void attacksgestion(Character player1, Character player2) {
         if (player1.getLife() > 0 && player2.getLife() > 0) {
             System.out.println("\nround n° " + i);
 
@@ -186,7 +184,7 @@ public class GameManager {
     /**
      * Game ending
      */
-    public void gameEnding() {
+    private void gameEnding() {
         System.out.println("Fin du jeu");
         if (player1.getLife() > 0) {
             System.out.println("Le joueur 1 est victorieux");
@@ -205,7 +203,7 @@ public class GameManager {
 
     public void runGame() {
         Scanner scanner = new Scanner(System.in);
-        int choosenClass = 0;
+        int choosenClass ;
 
         // INTRO
         displayIntroduction();
