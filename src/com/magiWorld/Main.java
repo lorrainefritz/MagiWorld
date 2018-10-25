@@ -1,5 +1,6 @@
 package com.magiWorld;
 
+import java.util.Scanner;
 import java.util.stream.Collector;
 
 public class Main {

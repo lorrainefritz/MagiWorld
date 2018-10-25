@@ -35,9 +35,10 @@ public class GameManager {
 
     /**
      * Display a Selected Character
+     *
      * @param nbOfClass the number of class that would be choosen
      */
-   private Character chooseClass(int nbOfClass) {
+    private Character chooseClass(int nbOfClass) {
         switch (nbOfClass) {
             case 1:
                 System.out.println("Vous avez choisi le Guerrier");//
@@ -78,9 +79,16 @@ public class GameManager {
                 System.out.println("Veuillez saisir son intelligence");
                 player.setIntelligence(scanner.nextInt());
 
-            } catch (InputMismatchException e) {
+            }catch (NullPointerException e){
+                System.out.println("Merci de saisir un entier compris entre 1 et 100 OP ");
+                initializePlayers(player);
+            }
+            catch (InputMismatchException e) {
                 System.out.println("Merci de saisir un entier compris entre 1 et 100 ");
-
+                player.setStrength(0);
+                player.setAgility(0);
+                player.setIntelligence(0);
+                initializePlayers(player);
             }
         }
         return player;
@@ -203,7 +211,7 @@ public class GameManager {
 
     public void runGame() {
         Scanner scanner = new Scanner(System.in);
-        int choosenClass ;
+        int choosenClass;
 
         // INTRO
         displayIntroduction();
@@ -214,26 +222,32 @@ public class GameManager {
                 displayAvailableClasses();
                 choosenClass = scanner.nextInt();
 
-                if (choosenClass == 1 ^ choosenClass == 2 ^ choosenClass==3) {
+                if (choosenClass == 1 || choosenClass == 2 || choosenClass == 3) {
                     player1 = initializePlayers(chooseClass(choosenClass));
                     player1.setNumberOfPlayers(1);
                     System.out.println(player1);
                 }
-            } while (choosenClass != 1 && choosenClass != 2 && choosenClass!=3);
+            } while (choosenClass != 1 && choosenClass != 2 && choosenClass != 3);
 
             //Player 2
-            do {
+          do {
                 displayAvailableClasses();
                 choosenClass = scanner.nextInt();
-                if (choosenClass == 1 ^ choosenClass == 2 ^choosenClass==3) {
+                if (choosenClass == 1 || choosenClass == 2 || choosenClass == 3) {
                     player2 = initializePlayers(chooseClass(choosenClass));
                     player2.setNumberOfPlayers(2);
                     System.out.println(player2);
                 }
-            } while (choosenClass != 1 && choosenClass != 2 && choosenClass!=3);
+            } while (choosenClass != 1 && choosenClass != 2 && choosenClass != 3);
+
+        } catch (NullPointerException e) {
+            System.out.println("Merci de rentrer 1 2 ou 3 : ");
+            runGame();
         } catch (InputMismatchException e) {
             System.out.println("Merci de rentrer 1 2 ou 3 : ");
+            runGame();
         }
+
 
         //BOUCLE DE COMBAT
         do {
@@ -242,6 +256,7 @@ public class GameManager {
         } while (player1.getLife() > 0 && player2.getLife() > 0);
         // FIN DU JEU
         gameEnding();
+        scanner.close();
     }
 
 }
